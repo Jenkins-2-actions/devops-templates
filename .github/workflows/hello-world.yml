@@ -8,5 +8,5 @@ jobs:
 
     steps:
 
-    - name: Print Hello World
+    - name: 🔄 Print Hello World
       run: echo "Hello, World"
