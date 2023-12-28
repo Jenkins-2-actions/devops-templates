@@ -1,15 +1,17 @@
 name: Frontend Template
 
 on:
-  push:
-    branches: [ master, pre, stage, develop ]
+  workflow_call:
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
+  frontend-tempate:
+    runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v4
+      - name: git chekcout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
-      - name: Run a one-line script
-        run: echo Hello from Octo Organization
+      - name: Holo mundo
+        run: |
+          echo "Holo Mundo"
