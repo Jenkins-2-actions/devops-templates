@@ -7,11 +7,12 @@ jobs:
   frontend-tempate:
     runs-on: ubuntu-22.04
     steps:
-      - name: 'Git chekcout :rocket:'
+      - name: 'Git chekcout'
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      - name: Hola mundo
-        run: |
-          echo "Hola Mundo"
+      - name: Hola Action
+        uses: Jenkins-2-actions/action-devops-templates@master
+        with:
+          who-to-greet: 'Mona the Octocat'
