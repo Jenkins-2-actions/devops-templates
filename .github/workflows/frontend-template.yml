@@ -7,11 +7,11 @@ jobs:
   frontend-tempate:
     runs-on: ubuntu-22.04
     steps:
-      - name: git chekcout
+      - name: 'Git chekcout :rocket:'
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      - name: Holo mundo
+      - name: Hola mundo
         run: |
-          echo "Holo Mundo"
+          echo "Hola Mundo"
