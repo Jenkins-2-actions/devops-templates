@@ -12,6 +12,9 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: 'npm build'
+        uses: "./declarative-actions/node-build-action.yml"z
+
       - name: Hola Action
         uses: Jenkins-2-actions/action-devops-templates@master
         with:
