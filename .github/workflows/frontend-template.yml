@@ -24,26 +24,21 @@ jobs:
           path: "./"
       # Step de prueba
       - name: "TEST"
-        run: ls -al
+        run: ls -al .github/workflows/
       # Paso 3: Extraer las propiedades del archivo Jenkinsfile.json
       - name: "Step 3: Set variables"
-        run: echo "oli"
-      # Paso 3: Configurar el entorno de ejecución
+        run: echo "Set variables comming soon"
+      # Paso 4: Configurar el entorno de ejecución
+      - name: "Step 4: Run enviroment configuration"
+        run: .github/workflows/node-build-action.yml
       # Paso 4: Realizar las pruebas unitarias
       # Paso 5: Compilar la aplicación
       # Paso 6: Desplegar sobre la infraestructura
-      - name: "Command Test"
-        run: |
-          ls -lha
-          ls -lha ..
 
       - name: Hola Action
         uses: Jenkins-2-actions/action-devops-templates@master
         with:
           who-to-greet: "Mona the Octocat"
-
-      - name: build app
-        uses: ./devops-templates/test/node-build-action.yml
 
   #     - uses: actions/upload-artifact@master
   #       with:
