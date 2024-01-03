@@ -7,30 +7,21 @@ jobs:
   frontend-tempate:
     runs-on: ubuntu-22.04
     steps:
-      # Paso 1: Copiar el contenido del repositorio template
-      - name: "Step 1: Git checkout config"
+      # Paso 1: Copiar el contenido del repositorio objetivo
+      - name: "Step 1: Git checkout"
         uses: actions/checkout@v4
-        with:
-          repository: "Jenkins-2-actions/devops-templates"
-          ref: "wilson"
-          path: "./"
+      # Paso 2: Copiar el contenido del repositorio template
+      - name: "Step 2: Template config checkout"
+        run: curl -O https://raw.githubusercontent.com/Jenkins-2-actions/devops-templates/wilson/.github/workflows/node-build-action.yml
       # Step de prueba
       - name: "TEST"
         run: ls -al
-      # Paso 2: Copiar el contenido del repositorio objetivo
-      - name: "Step 2: Git checkout"
-        uses: actions/checkout@v4
-        with:
-          path: "./"
-      # Step de prueba
-      - name: "TEST"
-        run: ls -al .github/workflows/
       # Paso 3: Extraer las propiedades del archivo Jenkinsfile.json
       - name: "Step 3: Set variables"
         run: echo "Set variables comming soon"
       # Paso 4: Configurar el entorno de ejecución
       - name: "Step 4: Run enviroment configuration"
-        run: .github/workflows/node-build-action.yml
+        run: ./node-build-action.yml
       # Paso 4: Realizar las pruebas unitarias
       # Paso 5: Compilar la aplicación
       # Paso 6: Desplegar sobre la infraestructura
