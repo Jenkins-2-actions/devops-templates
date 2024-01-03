@@ -1,4 +1,4 @@
-name: Frontend Template
+name: Frontend Template Wilson
 
 on:
   workflow_call:
@@ -6,20 +6,21 @@ on:
 jobs:
   frontend-tempate:
     runs-on: ubuntu-22.04
-    steps:      
-      - name: 'Git chekcout'
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-
-      - name: 'Git chekcout templates'
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-          path: 'devops-templates'
-          repository: Jenkins-2-actions/devops-templates      
-
-      - name: 'Command Test'  
+    steps:
+      # Paso 1: Copiar el contenido del repositorio objetivo
+      - name: "Step 1: Git checkout"
+        uses: actions/checkout@v4
+      # Step de prueba
+      - name: "TEST"
+        run: ls -al
+      # Paso 2: Extraer las propiedades del archivo Jenkinsfile.json
+      - name: "Step 2: Set variables"
+        run: sh echo "oli"
+      # Paso 3: Configurar el entorno de ejecución
+      # Paso 4: Realizar las pruebas unitarias
+      # Paso 5: Compilar la aplicación
+      # Paso 6: Desplegar sobre la infraestructura
+      - name: "Command Test"
         run: |
           ls -lha
           ls -lha ..
@@ -27,11 +28,10 @@ jobs:
       - name: Hola Action
         uses: Jenkins-2-actions/action-devops-templates@master
         with:
-          who-to-greet: 'Mona the Octocat'
+          who-to-greet: "Mona the Octocat"
 
       - name: build app
         uses: ./devops-templates/test/node-build-action.yml
-
 
   #     - uses: actions/upload-artifact@master
   #       with:
@@ -39,7 +39,5 @@ jobs:
   #         path: ./
 
   # npm-build:
-  #   needs: [frontend-tempate] 
+  #   needs: [frontend-tempate]
   #   uses: "Jenkins-2-actions/devops-templates/.github/workflows/node-build-action.yml@master"
-
-
