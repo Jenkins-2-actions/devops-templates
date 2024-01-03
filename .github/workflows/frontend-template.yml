@@ -18,10 +18,10 @@ jobs:
           fetch-depth: 0
           path: 'devops-templates'
           repository: Jenkins-2-actions/devops-templates
-          clean: false
 
       - name: 'Command Test'  
         run: |
+          ls -lha
           ls -lha ..
 
       - name: Hola Action
