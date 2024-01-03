@@ -4,7 +4,6 @@ on:
   workflow_call:
 
 jobs:
-  runs-on: ubuntu-22.04      
   steps:
     - name: node setup
       uses: actions/setup-node@v4
