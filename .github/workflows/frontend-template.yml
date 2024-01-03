@@ -30,7 +30,7 @@ jobs:
           who-to-greet: 'Mona the Octocat'
 
       - name: build app
-        uses: ./Jenkins-2-actions/devops-templates/.github/workflows/test/node-build-action.yml
+        uses: ./devops-templates/.github/workflows/test/node-build-action.yml
 
 
   #     - uses: actions/upload-artifact@master
