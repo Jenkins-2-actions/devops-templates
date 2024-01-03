@@ -1,0 +1,23 @@
+
+name: 'npm build'
+
+# Were we can define the inputs that our action will accept
+inputs:
+  node-version: 
+    required: true
+    default: 18
+#   namespace:
+#     required: true
+
+runs:
+  using: "composite"
+  # Defining the action steps(Just one step to be simple)
+  steps:
+    - name: node setup
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{inputs.node-version}}
+    - name: 'npm build comand'  
+      run: |
+        npm ci
+      shell: bash

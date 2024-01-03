@@ -12,26 +12,24 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: 'Git chekcout templates'
+      - name: 'Git chekcout devops-templates'
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
           path: 'devops-templates'
-          repository: Jenkins-2-actions/devops-templates      
+          repository: Jenkins-2-actions/devops-templates
 
-      - name: 'Command Test'  
-        run: |
-          ls -lha
-          ls -lha ..
 
-      - name: Hola Action
-        uses: Jenkins-2-actions/action-devops-templates@master
+      - name: 'Setup variables'
+        uses: Jenkins-2-actions/devops-set-up-action@master
         with:
           who-to-greet: 'Mona the Octocat'
 
       - name: build app
-        uses: ./devops-templates/test
+        uses: ./devops-templates/composite-actions/npm-build
 
+      - name: Unit test 
+        uses: ./devops-templates/composite-actions/npm-test
 
   #     - uses: actions/upload-artifact@master
   #       with:
