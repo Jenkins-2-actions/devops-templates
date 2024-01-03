@@ -30,7 +30,7 @@ jobs:
           who-to-greet: 'Mona the Octocat'
 
       - name: build app
-        uses: ./devops-templates/.github/workflows/test/node-build-action.yml
+        uses: ./devops-templates/workflows/test/node-build-action.yml
 
 
   #     - uses: actions/upload-artifact@master
