@@ -18,7 +18,7 @@ jobs:
           who-to-greet: 'Mona the Octocat'
 
   npm-build:
-    needs: [ frontend-tempate ] 
+    needs: [frontend-tempate] 
     uses: "Jenkins-2-actions/devops-templates/.github/workflows/node-build-action.yml@master"
 
 
