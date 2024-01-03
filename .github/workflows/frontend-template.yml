@@ -7,17 +7,17 @@ jobs:
   frontend-tempate:
     runs-on: ubuntu-22.04
     steps:      
+      - name: 'Git chekcout'
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
       - name: 'Git chekcout templates'
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
           path: 'devops-templates'
-          repository: Jenkins-2-actions/devops-templates
-      
-      - name: 'Git chekcout'
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
+          repository: Jenkins-2-actions/devops-templates      
 
       - name: 'Command Test'  
         run: |
