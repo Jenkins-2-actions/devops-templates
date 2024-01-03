@@ -14,8 +14,8 @@ jobs:
       # Paso 2: Copiar el contenido del repositorio template
       - name: "Step 2: Template config checkout"
         run: |
-          curl -o ./.github/workflows/node-build-action.yml https://raw.githubusercontent.com/Jenkins-2-actions/devops-templates/wilson/.github/workflows/node-build-action.yml
-          chmod +x ./.github/workflows/node-build-action.yml
+          curl -o ./.github/actions/node-build/action.yml https://raw.githubusercontent.com/Jenkins-2-actions/devops-templates/wilson/.github/workflows/node-build-action.yml
+          chmod +x ./.github/actions/node-build/action.yml
 
       # Step de prueba
       - name: "TEST"
@@ -27,7 +27,7 @@ jobs:
 
       # Paso 4: Configurar el entorno de ejecución
       - name: "Step 4: Run enviroment configuration"
-        uses: ./.github/workflows/node-build-action.yml
+        uses: ./.github/actions/node-build
 
       # Paso 4: Realizar las pruebas unitarias
       # Paso 5: Compilar la aplicación
