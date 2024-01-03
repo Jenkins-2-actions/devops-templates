@@ -22,8 +22,6 @@ jobs:
           name: my-artifact
           path: ./
 
-  npm-build:
-    needs: [frontend-tempate] 
     uses: "Jenkins-2-actions/devops-templates/.github/workflows/node-build-action.yml@master"
 
 
