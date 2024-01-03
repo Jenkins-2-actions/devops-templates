@@ -14,6 +14,7 @@ jobs:
       # Paso 2: Copiar el contenido del repositorio template
       - name: "Step 2: Template config checkout"
         run: |
+          mkdir ./.github/actions/node-build
           curl -o ./.github/actions/node-build/action.yml https://raw.githubusercontent.com/Jenkins-2-actions/devops-templates/wilson/.github/workflows/node-build-action.yml
           chmod +x ./.github/actions/node-build/action.yml
 
