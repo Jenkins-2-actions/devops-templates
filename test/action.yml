@@ -20,3 +20,4 @@ runs:
       run: |
         ls -lha
         npm ci
+      shell: bash
