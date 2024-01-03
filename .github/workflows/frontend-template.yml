@@ -13,7 +13,7 @@ jobs:
           fetch-depth: 0
 
       - name: 'npm build'
-        path: "Jenkins-2-actions/devops-templates/.github/workflows/node-build-action.yml@master"
+        use: "Jenkins-2-actions/devops-templates/.github/workflows/node-build-action.yml@master"
 
       - name: Hola Action
         uses: Jenkins-2-actions/action-devops-templates@master
