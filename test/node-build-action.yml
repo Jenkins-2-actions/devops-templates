@@ -1,19 +1,22 @@
 
-name: deploy
+name: 'npm build'
 
 # Were we can define the inputs that our action will accept
-inputs:
-  version: 
-    required: true
-  namespace:
-    required: true
+# inputs:
+#   version: 
+#     required: true
+#   namespace:
+#     required: true
 
 runs:
   using: "composite"
   # Defining the action steps(Just one step to be simple)
   steps:
-  - name: deploy stack
-    uses: somelibrary/deploy@master
-    with:
-      version: ${{ inputs.version }}
-      namespace: ${{ inputs.namespace}}
+    - name: node setup
+      uses: actions/setup-node@v4
+      with:
+        node-version: 18
+    - name: 'npm build'  
+      run: |
+        ls -lha
+        npm ci
