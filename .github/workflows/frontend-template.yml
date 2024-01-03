@@ -18,6 +18,10 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: 'Command Test'  
+        run: |
+          ls -lha
+
       - name: Hola Action
         uses: Jenkins-2-actions/action-devops-templates@master
         with:
