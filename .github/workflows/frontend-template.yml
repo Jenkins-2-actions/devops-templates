@@ -30,7 +30,7 @@ jobs:
           who-to-greet: 'Mona the Octocat'
 
       - name: build app
-        uses: devops-templates/test
+        uses: ./devops-templates/test
 
 
   #     - uses: actions/upload-artifact@master
