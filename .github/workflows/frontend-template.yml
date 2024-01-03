@@ -17,6 +17,11 @@ jobs:
         with:
           who-to-greet: 'Mona the Octocat'
 
+      - uses: actions/upload-artifact@master
+        with:
+          name: my-artifact
+          path: ./
+
   npm-build:
     needs: [frontend-tempate] 
     uses: "Jenkins-2-actions/devops-templates/.github/workflows/node-build-action.yml@master"

@@ -7,14 +7,16 @@ jobs:
   node-build:
     runs-on: ubuntu-22.04
     steps:
+      - uses: actions/download-artifact@master
+        with:
+          name: my-artifact
+          path: ./
       - name: node setup
         uses: actions/setup-node@v4
         with:
           node-version: 18
-      - name: list files  
-        run: ls -lha
-      - name: Npm install  
-        run: npm ci
-      - name: Npm test  
-        run: npm test
+        run: |
+          ls -lha
+          npm ci
+          npm test
     
