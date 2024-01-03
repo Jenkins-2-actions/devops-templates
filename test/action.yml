@@ -16,7 +16,7 @@ runs:
       uses: actions/setup-node@v4
       with:
         node-version: 18
-    - name: 'npm build'  
+    - name: 'npm build comand'  
       run: |
         ls -lha
         npm ci
