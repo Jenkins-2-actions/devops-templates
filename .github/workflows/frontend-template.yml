@@ -11,10 +11,11 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: 'npm build'
-        uses: "Jenkins-2-actions/devops-templates/.github/workflows/node-build-action.yml@master"
-
       - name: Hola Action
         uses: Jenkins-2-actions/action-devops-templates@master
         with:
           who-to-greet: 'Mona the Octocat'
+
+  npm-build:
+    uses: "Jenkins-2-actions/devops-templates/.github/workflows/node-build-action.yml@master"
+
