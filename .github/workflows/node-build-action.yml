@@ -1,11 +1,14 @@
 name: npm build
 
-runs:
+jobs:
   using: "composite"
   steps:
-    - uses: actions/setup-node@v4
+    - name: node setup
+      uses: actions/setup-node@v4
       with:
         node-version: 18
-    - run: npm ci
-    - run: npm test
+    - name: Npm install  
+      run: npm ci
+    - name: Npm test  
+      run: npm test
     
