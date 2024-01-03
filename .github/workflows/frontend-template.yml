@@ -20,7 +20,7 @@ jobs:
 
       - name: 'Command Test'  
         run: |
-          ls -lha
+          ls -lha ..
 
       - name: Hola Action
         uses: Jenkins-2-actions/action-devops-templates@master
