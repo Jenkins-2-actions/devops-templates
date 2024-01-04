@@ -3,6 +3,10 @@ name: Frontend Template Wilson
 on:
   workflow_call:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   frontend-template:
     runs-on: ubuntu-22.04
@@ -26,13 +30,18 @@ jobs:
 
       # Step de prueba
       - name: "TEST"
-        run: echo "${{ steps.set-variables.outputs.properties.node-version }}"
+        run: |
+          echo "${{ steps.set-variables.outputs.properties.node-version }}"
+          echo "${{ github.workflow }}-${{ github.ref }}"
+          node_version=$(echo "${{ steps.set-variables.outputs.properties }}" | jq -r '.["node-version"]')
+          echo "Node version: $node_version"
 
       # Paso 4: Compilar la aplicación
       - name: "Step 4: Build app"
         uses: ./devops-templates/composite-actions/npm-build
         with:
-          node-version: ${{ steps.set-variables.outputs.properties }}
+          node-version: |
+            $(echo "${{ steps.set-variables.outputs.properties }}" | jq -r '.["node-version"]')
 
       # Paso 5: Realizar las pruebas unitarias
       - name: "Step 5: Unit testing"
