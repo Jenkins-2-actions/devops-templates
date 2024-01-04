@@ -18,15 +18,23 @@ runs:
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v4
       with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         role-to-assume: arn:aws:iam::234968465818:role/role-cross-account-devops-prod #validar alcance a los secretos
         aws-region: ${{inputs.aws-region}}
 
     - name: 'Setup Terraform'
-      uses: hashicorp/setup-terraform@v3
-      with:
-        terraform-version: ${{inputs.terraform-version}}
-        cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 0.13.0
+          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
+      - name: Github Authentication
+        run: |
+          git config --global url."https://git:${{ secrets.READONLY_GITHUB_TOKEN }}@github.com/segurosbolivar".insteadOf "https://github.com/segurosbolivar"
+          git config --global url."https://${{ secrets.READONLY_GITHUB_TOKEN }}:x-oauth-basic@github.com/segurosbolivar".insteadOf ssh://git@github.com/segurosbolivar
+        shell: sh
+        
     - name: Terraform Validate
       run: |
             terraform -v
