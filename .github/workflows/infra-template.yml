@@ -1,6 +1,34 @@
-name:
+name: 'Terraform Template'
 
-imputs:
+on:
+  workflow_call:
+    
+jobs:
+  terraform-template:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
 
-runs:
-  using:
+    steps:      
+      - name: 'Git chekcout'
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: 'Git chekcout devops-templates'
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          path: 'devops-templates'
+          repository: Jenkins-2-actions/devops-templates
+
+
+      - name: 'Setup variables'
+        uses: Jenkins-2-actions/devops-set-up-action@master
+        with:
+          who-to-greet: 'Mona the Octocat'
+
+      - name: Terraform
+        uses: ./devops-templates/composite-actions/terraform
+          with:

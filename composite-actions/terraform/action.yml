@@ -1,0 +1,46 @@
+
+name: 'Terraform'
+
+inputs:
+  terraform-version: 
+    required: true
+    default: 0.13.0
+
+  branch-enviroment: 
+    required: true
+
+  aws-region: 
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        role-to-assume: arn:aws:iam::234968465818:role/role-cross-account-devops-prod #validar alcance a los secretos
+        aws-region: ${{inputs.aws-region}}
+
+    - name: 'Setup Terraform'
+      uses: hashicorp/setup-terraform@v3
+      with:
+        terraform-version: ${{inputs.terraform-version}}
+        cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+
+    - name: Terraform Validate
+      run: |
+            terraform -v
+            terraform init
+            terraform validate
+
+    - name: Terraform init
+      run: |
+            terraform workspace select ${inputs.branch_env} || terraform workspace new ${inputs.branch_env}
+            terraform init
+    
+    - name: Terraform Plan
+      run: |
+            terraform plan -var-file=environment/${inputs.branch_env}/env.${inputs.branch_env}.tfvars -out=plan${inputs.branch_env}
+
+    - name: Terraform Apply
+      run: terraform apply plan${inputs.branch_env}
