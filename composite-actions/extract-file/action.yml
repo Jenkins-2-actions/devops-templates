@@ -6,9 +6,12 @@ inputs:
     required: true
     default: "./properties.json"
 outputs:
-  properties:
-    description: "Json properties with defined parameters"
-    value: ${{ steps.extract-and-set-properties.outputs.properties }}
+  package-manager:
+    description: "Packages manager"
+    value: ${{ steps.extract-and-set-properties.outputs.package-manager }}
+  node-version:
+    description: "Node version"
+    value: ${{ steps.extract-and-set-properties.outputs.node-version }}
 
 runs:
   using: "composite"

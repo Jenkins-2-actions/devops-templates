@@ -31,7 +31,9 @@ jobs:
       # Step de prueba
       - name: "TEST"
         run: |
-          node_version=$(echo '${{ steps.set-variables.outputs.properties }}' | jq -r '.["node-version"]')
+          package_manager=$(echo '${{ steps.set-variables.outputs.package-manager }}')
+          node_version=$(echo '${{ steps.set-variables.outputs.node-version }}')
+          echo "Packages manager: $package_manager"
           echo "Node version: $node_version"
 
       # Paso 4: Compilar la aplicación
