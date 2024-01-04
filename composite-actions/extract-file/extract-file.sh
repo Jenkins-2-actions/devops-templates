@@ -1,6 +1,6 @@
 #!/bin/bash
 properties=$(jq -c '.' "$1")
-if [[ $properties ]]; then
+if [ -n "$properties" ]; then
   echo "Extracted properties: $properties"
   echo "properties=$properties" >> $GITHUB_OUTPUT
 else
