@@ -25,11 +25,18 @@ jobs:
 
       # Paso 3: Extraer las propiedades del archivo Jenkinsfile.json
       - name: "Step 3: Set variables"
+        id: set-variables
         uses: ./devops-templates/composite-actions/extract-file
+
+      # Step de prueba
+      - name: "TEST"
+        run: echo "${{ steps.set-variables.outputs.properties }}"
 
       # Paso 4: Compilar la aplicación
       - name: "Step 4: Build app"
         uses: ./devops-templates/composite-actions/npm-build
+        with:
+          node-version: ${{ steps.set-variables.outputs.properties }}
 
       # Paso 5: Realizar las pruebas unitarias
       - name: "Step 5: Unit testing"
