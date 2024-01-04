@@ -31,8 +31,8 @@ jobs:
       # Step de prueba
       - name: "TEST"
         run: |
-          package_manager=$(echo '${{ steps.set-variables.outputs.package-manager }}')
-          node_version=$(echo '${{ steps.set-variables.outputs.node-version }}')
+          package_manager=$(echo '${{ steps.set-variables.outputs.package_manager }}')
+          node_version=$(echo '${{ steps.set-variables.outputs.node_version }}')
           echo "Packages manager: $package_manager"
           echo "Node version: $node_version"
 
@@ -40,8 +40,7 @@ jobs:
       - name: "Step 4: Build app"
         uses: ./devops-templates/composite-actions/npm-build
         with:
-          node-version: |
-            $(echo '${{ steps.set-variables.outputs.properties }}' | jq -r '.["node-version"]')
+          node-version: ${{ steps.set-variables.outputs.node-version }}
 
       # Paso 5: Realizar las pruebas unitarias
       - name: "Step 5: Unit testing"
