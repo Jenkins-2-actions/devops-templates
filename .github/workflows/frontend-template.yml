@@ -4,7 +4,7 @@ on:
   workflow_call:
 
 jobs:
-  frontend-tempate:
+  frontend-template:
     runs-on: ubuntu-22.04
     steps:
       # Paso 1: Copiar el contenido del repositorio objetivo
@@ -17,10 +17,11 @@ jobs:
         with:
           path: "devops-templates"
           repository: Jenkins-2-actions/devops-templates
+          ref: wilson
 
       # Step de prueba
       - name: "TEST"
-        run: ls -al ./devops-templates
+        run: ls -al ./devops-templates/composite-actions/extract-file
 
       # Paso 3: Extraer las propiedades del archivo Jenkinsfile.json
       - name: "Step 3: Set variables"
