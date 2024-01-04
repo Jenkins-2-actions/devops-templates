@@ -21,7 +21,7 @@ jobs:
 
       # Step de prueba
       - name: "TEST"
-        run: ls -al ./devops-templates/composite-actions/extract-file
+        run: ls -al
 
       # Paso 3: Extraer las propiedades del archivo Jenkinsfile.json
       - name: "Step 3: Set variables"

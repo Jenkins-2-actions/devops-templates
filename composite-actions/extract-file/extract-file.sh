@@ -1,3 +1,4 @@
+#!/bin/bash
 properties=$(jq -c '.' "$1")
 if [[ $properties ]]; then
   echo "Extracted properties: $properties"
