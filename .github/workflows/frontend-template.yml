@@ -31,9 +31,7 @@ jobs:
       # Step de prueba
       - name: "TEST"
         run: |
-          echo "${{ steps.set-variables.outputs.properties.node-version }}"
-          echo "${{ github.workflow }}-${{ github.ref }}"
-          node_version=$(echo "${{ steps.set-variables.outputs.properties }}" | jq -r '.["node-version"]')
+          node_version=$(echo '${{ steps.set-variables.outputs.properties }}' | jq -r '.["node-version"]')
           echo "Node version: $node_version"
 
       # Paso 4: Compilar la aplicación
@@ -41,7 +39,7 @@ jobs:
         uses: ./devops-templates/composite-actions/npm-build
         with:
           node-version: |
-            $(echo "${{ steps.set-variables.outputs.properties }}" | jq -r '.["node-version"]')
+            $(echo '${{ steps.set-variables.outputs.properties }}' | jq -r '.["node-version"]')
 
       # Paso 5: Realizar las pruebas unitarias
       - name: "Step 5: Unit testing"
