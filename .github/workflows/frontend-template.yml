@@ -23,28 +23,24 @@ jobs:
           repository: Jenkins-2-actions/devops-templates
           ref: wilson
 
-      # Paso 3: Extraer las propiedades del archivo Jenkinsfile.json
+      # Paso 3: Extraer las propiedades del archivo properties.json
       - name: "Step 3: Set variables"
         id: set-variables
         uses: ./devops-templates/composite-actions/extract-file
 
-      # Step de prueba
-      - name: "TEST"
-        run: |
-          package_manager=$(echo '${{ steps.set-variables.outputs.package_manager }}')
-          node_version=$(echo '${{ steps.set-variables.outputs.node_version }}')
-          echo "Packages manager: $package_manager"
-          echo "Node version: $node_version"
-
-      # Paso 4: Compilar la aplicación
-      - name: "Step 4: Build app"
-        uses: ./devops-templates/composite-actions/npm-build
+      # Paso 4: Configurar Node JS
+      - name: "Step 4: Node JS config"
+        uses: ./devops-templates/composite-actions/npm-config
         with:
           node-version: ${{ steps.set-variables.outputs.node-version }}
 
-      # Paso 5: Realizar las pruebas unitarias
-      - name: "Step 5: Unit testing"
+      # Paso 5: Compilar la aplicación
+      - name: "Step 5: Build app"
+        uses: ./devops-templates/composite-actions/npm-build
+
+      # Paso 6: Realizar las pruebas unitarias
+      - name: "Step 6: Unit testing"
         uses: ./devops-templates/composite-actions/npm-test
 
-      # Paso 6: Compilar la aplicación
-      # Paso 7: Desplegar sobre la infraestructura
+      # Paso 7: Análisis de Sonar
+      # Paso 8: Desplegar sobre la infraestructura

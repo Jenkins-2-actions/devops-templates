@@ -1,0 +1,15 @@
+name: "Node setup"
+description: "Node setup"
+inputs:
+  node-version:
+    description: "Node version for build app"
+    required: true
+    default: "20"
+
+runs:
+  using: "composite"
+  steps:
+    - name: "Node setup"
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ inputs.node-version }}
