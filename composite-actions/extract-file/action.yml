@@ -16,4 +16,4 @@ runs:
     - name: "Extract and set properties"
       id: extract-and-set-properties
       shell: bash
-      run: sh ./devops-templates/composite-actions/extract-file/extract-file.sh
+      run: sh ./devops-templates/composite-actions/extract-file/extract-file.sh "${{ inputs.file-path }}"
