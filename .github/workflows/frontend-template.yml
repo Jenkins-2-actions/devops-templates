@@ -19,10 +19,6 @@ jobs:
           repository: Jenkins-2-actions/devops-templates
           ref: wilson
 
-      # Step de prueba
-      - name: "TEST"
-        run: ls -al
-
       # Paso 3: Extraer las propiedades del archivo Jenkinsfile.json
       - name: "Step 3: Set variables"
         id: set-variables
@@ -30,7 +26,7 @@ jobs:
 
       # Step de prueba
       - name: "TEST"
-        run: echo "${{ steps.set-variables.outputs.properties }}"
+        run: echo "${{ steps.set-variables.outputs.properties.node-version }}"
 
       # Paso 4: Compilar la aplicación
       - name: "Step 4: Build app"
