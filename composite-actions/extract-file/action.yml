@@ -1,0 +1,27 @@
+name: "extract file"
+description: "Extract parameters from properties.json file"
+inputs:
+  file-path:
+    description: "File path where set parameters"
+    required: true
+    default: "./properties.json"
+outputs:
+  properties:
+    description: "Json properties with defined parameters"
+    value: ${{ steps.extract-and-set-properties.outputs.properties }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: "Extract and set properties"
+      id: extract-and-set-properties
+      shell: bash
+      run: |
+        properties=$(jq -c '.' ${{ inputs.file-path }})
+        if [[ $properties ]]; then
+          echo "Extracted properties: $properties"
+          echo "properties=$properties" >> $GITHUB_OUTPUT
+        else
+          echo "ERROR:  ${{ inputs.file-path }} is not defined in repository"
+          exit 1
+        fi

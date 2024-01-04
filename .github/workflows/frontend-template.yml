@@ -12,38 +12,27 @@ jobs:
         uses: actions/checkout@v4
 
       # Paso 2: Copiar el contenido del repositorio template
-      - name: "Step 2: Template config checkout"
-        run: |
-          sudo mkdir ./.github/actions/node-build
-          curl -o ./.github/actions/node-build/action.yml https://raw.githubusercontent.com/Jenkins-2-actions/devops-templates/wilson/.github/workflows/node-build-action.yml
-          chmod +x ./.github/actions/node-build/action.yml
+      - name: "Step 2: Git checkout DevOps templates"
+        uses: actions/checkout@v4
+        with:
+          path: "devops-templates"
+          repository: Jenkins-2-actions/devops-templates
 
       # Step de prueba
       - name: "TEST"
-        run: ls -al ./.github/workflows
+        run: ls -al ./devops-templates
 
       # Paso 3: Extraer las propiedades del archivo Jenkinsfile.json
       - name: "Step 3: Set variables"
-        run: echo "Set variables comming soon"
+        uses: ./devops-templates/composite-actions/extract-file
 
-      # Paso 4: Configurar el entorno de ejecución
-      - name: "Step 4: Run enviroment configuration"
-        uses: ./.github/actions/node-build
+      # Paso 4: Compilar la aplicación
+      - name: "Step 4: Build app"
+        uses: ./devops-templates/composite-actions/npm-build
 
-      # Paso 4: Realizar las pruebas unitarias
-      # Paso 5: Compilar la aplicación
-      # Paso 6: Desplegar sobre la infraestructura
+      # Paso 5: Realizar las pruebas unitarias
+      - name: "Step 5: Unit testing"
+        uses: ./devops-templates/composite-actions/npm-test
 
-      - name: Hola Action
-        uses: Jenkins-2-actions/action-devops-templates@master
-        with:
-          who-to-greet: "Mona the Octocat"
-
-  #     - uses: actions/upload-artifact@master
-  #       with:
-  #         name: my-artifact
-  #         path: ./
-
-  # npm-build:
-  #   needs: [frontend-tempate]
-  #   uses: "Jenkins-2-actions/devops-templates/.github/workflows/node-build-action.yml@master"
+      # Paso 6: Compilar la aplicación
+      # Paso 7: Desplegar sobre la infraestructura
