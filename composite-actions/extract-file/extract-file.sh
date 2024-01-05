@@ -13,7 +13,7 @@ if [ -n "$properties" ]; then
   # Iterar sobre las claves del objeto JSON y obtener sus respectivos valores
   for key in $keys; do
     echo "Key to extract: .$key"
-    value=$(echo "$properties" | jq ".$key")
+    value=$(echo "$properties" | jq ".$key" | tr -d '"')
 
     # Imprimir y asignar cada propiedad como variable de salida para el workflow
     echo "$key:$value"
