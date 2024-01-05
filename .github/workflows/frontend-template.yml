@@ -30,7 +30,7 @@ jobs:
 
       # Paso 4: Configurar Node JS
       - name: "Step 4: Node JS config"
-        uses: ./devops-templates/composite-actions/${{ steps.set-variables.outputs.package_manager }}-config
+        uses: ./devops-templates/composite-actions/npm-config
         with:
           node-version: ${{ steps.set-variables.outputs.node_version }}
 
